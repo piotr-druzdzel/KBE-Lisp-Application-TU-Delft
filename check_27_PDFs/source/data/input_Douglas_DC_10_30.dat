@@ -1,0 +1,79 @@
+;parameters defining the wing:							
+;bear in mind that the line number plays a role though, it has to be consistent with the following convention:
+
+;affecting wing shape, MAC and its position: 
+c-root                     12.0   		;[m]
+total-span                 50   		;[m]
+taper                      0.15  		;[-]
+spanwise-position-kink     0.25 		;[-]
+sweep                      37   		;[deg]
+
+;affecting aft fuselage cone:
+landing_gear_height        2.0			;[m]
+fuselage_diameter          4.8			;[m]
+divergence_angle           20   		;[deg]
+rotation_angle             7			;[deg]
+
+;affecting nose:
+slenderness_ratio_fuselage 12			;[-]
+slenderness_ratio_nose     1.5			;[-]
+
+
+;affecting wing position:
+engines_podded_0_mounted_1 0    		;0 -> podded (0.25 * MAC position at 0.5 fuselage cylindrical length), 1 -> fuselage mounted (0.25 * MAC position at 0.6)
+wings_bottom_0_top_1       0    		;0 -> bottom, 1 -> top config.
+
+;others:
+dihedral                   6			;[deg]
+thickness                  0.7			;[m]
+
+;engines, possible configurations are: two, three or four:
+engine_diameter            2.6			;[m]
+engine_length              5.5			;[m]
+number_of_engines          3			;[-] 
+
+; TAIL:
+
+;0 conventional
+;1 T - tail
+;2 cruciform
+;3 V - tail
+;4 C - tail
+;5 H - tail
+
+
+type-of-tail 				0			;[-]
+cruciform    				0.5			;[-] where: 0 -> bottom, 1 -> top of the vertical fin 
+
+
+;planform of the Horizontal Tail (HT):
+tail-taper     				0.3			;[-] between 0.3 and 0.5
+tail-ar        				5.0			;[-] always ~5
+tail-dihedral-init			7			;[deg] in case of V-tail this value will be overwritten to satisfy sizing
+
+;planform of the Vertical Tail (VT):
+stagger_VT 					0			;[-] franction of the aft cone length, 0 -> 0%, 1 -> 100%
+
+fin-taper      				0.3			;[-]   0.3 for LOW, 0.6-0.8 for T-TAILs
+fin-ar         				1.9			;[-]   1.9 for LOW, 1.2-1.5 for T_TAILs
+fin-sweep      				39 			;[deg] regulations: 35-40 [deg]
+fin-thickness  				0.8			;[m]   arbitrary					 
+				 
+;wake hide/show:
+wing-wake-showing 			0			;0 -> hide, 1 -> show	
+tail-wake-showing 			0			;0 -> hide, 1 -> show	
+
+;computations:
+Mach 						0.75		;[-]
+altitude 					10200		;[m]   formulas embrace altitude range for passenger aircrafts: 0-20 000 [m] others are neither necessary nor accurate
+W_dg_lb						410114		;[lb]  where: 1[lb]  = 0.45 [kg]
+Thrust_lb					85000		;[lbf] where: 1[lbf] = 4.45 [N]
+
+;Q3D:
+wing_AoA_deg 				3			;[deg] incidence angle of the wing for Q3D solver
+inviscid_0_viscous_1		0			;[-]   switch between viscous and inviscid calculations for Q3D
+
+;X-foil:
+xfoil-spanwisely 			0.75 		;[-] a value between 0 and 1.0
+xfoil-cutting-showing		0			;[-] 0 -> hide, 1 -> show
+xfoil_wing_tail_fin			0			;[-] 0 -> wing, 1 -> tail, 2-> fin
